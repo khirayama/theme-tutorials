@@ -1,0 +1,81 @@
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.header.settings.title.label"
+    }
+  ]
+}
+{% endschema %}
+<header>
+  <nav>
+    <a href="index.html">Shopify-Training</a>
+    <a href="/cart">
+      <span>
+        CART({{cart.item_count}})
+      </span>
+    </a>
+    <button>
+      <span>o</span>
+    </button>
+    <div>
+      <ul>
+        {% for link in linklists.main-menu.links %}
+          <li>
+            {% assign child_list_handle = link.title | handleize %}
+            {% if linklists[child_list_handle].links != blank %}
+              <div>
+                <a>{{ link.title }}</a>
+                <ul>
+                  {% for childlink in linklists[child_list_handle].links %}
+                    {% assign sub_list_handle = childlink.title | handleize %}
+                    {% if linklists[sub_list_handle].links != blank %}
+                      <li>
+                        <a data-toggle="dropdown">{{ childlink.title }}</a>
+                        <ul>
+                          {% for sublink in linklists[sub_list_handle].links %}
+                            <li>
+                              <a>{{ sublink.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {%else%}
+                      <li>
+                        <a>{{ childlink.title | escape }}</a>
+                      </li>
+                    {%endif%}
+                  {% endfor %}
+                </ul>
+              </div>
+            {%else%}
+              <a>{{ link.title }}</a>
+            {%endif%}
+          </li>
+        {% endfor %}
+      </ul>
+      <div>
+        <a href="/cart">
+          <span>
+            <i>CART</i>
+          </span>
+          <span>
+            CART({{cart.item_count}})
+          </span>
+        </a>
+        <form>
+          <div>
+            <input type="text">
+            <span>
+              <button type="submit">SUBMIT</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
