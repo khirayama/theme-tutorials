@@ -1,0 +1,52 @@
+{% schema %}
+{
+  "name": "Footer",
+  "settings":[
+    {
+      "type": "text",
+      "id": "instagram",
+      "label": "Instagram Link"
+    },
+    {
+      "type": "text",
+      "id": "facebook",
+      "label": "Facebook Link"
+    },
+    {
+      "type": "text",
+      "id": "twitter",
+      "label": "Twitter Link"
+    }
+  ]
+}
+{% endschema %}
+<footer>
+  <ul>
+    {% for link in linklists.footer.links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <ul>
+    {% if section.settings.instagram != blank %}
+      <li>
+        <a href="{{section.settings.instagram}}">
+          Instagram
+        </a>
+      </li>
+    {% endif %}
+    {% if section.settings.facebook != blank %}
+      <li>
+        <a href="{{section.settings.facebook}}">
+          Facebook
+        </a>
+      </li>
+    {% endif %}
+    {% if section.settings.twitter != blank %}
+      <li>
+        <a href="{{section.settings.twitter}}">
+          Twitter
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</footer>
