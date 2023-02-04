@@ -1,0 +1,17 @@
+source_language: en
+target_languages: [ja]
+non_blocking_languages: []
+components:
+  - name: buyer
+    audience: buyer
+    scheme: 'online-store-theme'
+    owners: ['@khirayama/themes-translations']
+    paths:
+      - locales/{{language}}.json
+  - name: merchant
+    target_languages: [ja]
+    audience: merchant
+    scheme: 'online-store-theme'
+    owners: ['@khirayama/themes-translations']
+    paths:
+      - locales/{{language}}.schema.json
