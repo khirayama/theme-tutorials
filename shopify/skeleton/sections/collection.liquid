@@ -1,0 +1,23 @@
+{% schema %}
+{
+	"name": "Collection",
+	"settings": [
+		{
+			"type": "collection",
+			"id": "collection",
+			"label": "Collection"
+		}
+	]
+}
+{% endschema %}
+{% for product in collection.products %}
+  <a href="{{product.url}}">
+    <div>
+      <img src="{{product.featured_image.src | img_url: '1920x'}}" alt="">
+      <div>
+        <p>okok {{product.title}}</p>
+        <p>{{product.price | money}}</p>
+      </div>
+    </div>
+  </a>
+{% endfor %}
