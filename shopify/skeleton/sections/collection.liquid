@@ -1,23 +1,22 @@
 {% schema %}
 {
-	"name": "Collection",
-	"settings": [
-		{
-			"type": "collection",
-			"id": "collection",
-			"label": "Collection"
-		}
-	]
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ]
 }
 {% endschema %}
+
+{% assign collection = collections[section.settings.collection] %}
+<div>section json {{ section.settings | json }}</div>
+<h2>{{ collection.title }}</h2>
 {% for product in collection.products %}
-  <a href="{{product.url}}">
-    <div>
-      <img src="{{product.featured_image.src | img_url: '1920x'}}" alt="">
-      <div>
-        <p>okok {{product.title}}</p>
-        <p>{{product.price | money}}</p>
-      </div>
-    </div>
+  <a href="{{ product.url }}">
+    <p>{{ product.title }}</p>
+    <p>{{ product.price | money }}</p>
   </a>
 {% endfor %}
