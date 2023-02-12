@@ -4,6 +4,7 @@
   "settings": [
     {
       "type": "collection",
+      "default": "frontpage",
       "id": "collection",
       "label": "Collection"
     }
@@ -11,8 +12,8 @@
 }
 {% endschema %}
 
-{% assign collection = collections[section.settings.collection] %}
 <div>section json {{ section.settings | json }}</div>
+{% assign collection = collections[section.settings.collection] %}
 <h2>{{ collection.title }}</h2>
 {% for product in collection.products %}
   <a href="{{ product.url }}">
