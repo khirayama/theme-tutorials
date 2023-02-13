@@ -37,7 +37,7 @@ shopify theme check .
         -   article.json: `/`
         -   blog.json: `/`
         -   cart.json: `/cart`
-        -   collection.json: `/`
+        -   collection.json: `/collection/:collection`
         -   customers
             -   account.json: `/`
             -   activate_account.json: `/`
@@ -49,14 +49,15 @@ shopify theme check .
         -   gift_card.liquid: `/`
         -   index.json: `/`
         -   list-collections.json: `/collections`
-        -   page.contact.json: `/`
+        -   page.contact.json: `/contact`
         -   page.json: `/`
         -   password.json: `/password`
-        -   product.json: `/`
+        -   product.json: `/products/:product`
         -   search.json: `/search`
         -   robots.txt.liquid: `/robots.txt`
 -   sections https://shopify.dev/themes/architecture/sections
     -   theme の中核
+    -   [Input settings](https://shopify.dev/docs/themes/architecture/settings/input-settings)
 -   snippets
     -   section よりも小さい再利用可能な component
 -   locals https://shopify.dev/themes/architecture/locales
@@ -72,17 +73,17 @@ Liquid の概要 [Shopify のテンプレート言語 Liquid の概要 - Shopify
         -   `{{ }}` は評価した値が代入されるため、str などはそのまま出力される
         -   `{% %}` はロジックを示す
 -   環境
-
     -   関数 https://shopify.dev/api/liquid/filters
     -   オブジェクト https://shopify.dev/api/liquid/objects
-
 -   よく使う filters
     -   [default](https://shopify.github.io/liquid/filters/default/)
 
-## 流れ
+## その他
 
--   `layout/theme.liquid` を作成
+-   フォームの種類 [Liquid tags: theme tags](https://shopify.dev/docs/api/liquid/tags/theme-tags#form)
+
 
 ## 参考資料
 
-[Shopify Theme Section を初めて作成するときのポイント【2023 年版】 - Shopify 日本](https://www.shopify.com/jp/blog/partner-how-to-create-your-first-shopify-theme-section)
+- [Shopify Theme Section を初めて作成するときのポイント【2023 年版】 - Shopify 日本](https://www.shopify.com/jp/blog/partner-how-to-create-your-first-shopify-theme-section)
+- [Liquidを使用したShopifyのフォーム作成について - Shopify 日本](https://www.shopify.com/jp/blog/partner-liquid-form)
