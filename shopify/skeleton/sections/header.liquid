@@ -13,18 +13,19 @@
 {% endschema %}
 <header>
   <nav>
-    <a href="index.html">Shopify-Training</a>
+    <a href="/">Shopify-Training</a>
     <a href="/cart">
-      <span>
-        CART({{ cart.item_count }})
-      </span>
+      <span> CART({{ cart.item_count }}) </span>
     </a>
-    <button>
-      <span>o</span>
-    </button>
+    {% if customer %}
+      <a href="/account/logout">LOG OUT</a>
+    {% else %}
+      <a href="/account/login">LOG IN</a>
+      <a href="/account/register">REGISTER</a>
+    {% endif %}
     <div>
       <ul>
-        {% for link in linklists.main-menu.links %}
+        {% for link in linklists['main-menu'].links %}
           <li>
             {% assign child_list_handle = link.title | handleize %}
             {% if linklists[child_list_handle].links != blank %}
@@ -44,17 +45,17 @@
                           {% endfor %}
                         </ul>
                       </li>
-                    {%else%}
+                    {% else %}
                       <li>
                         <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
                       </li>
-                    {%endif%}
+                    {% endif %}
                   {% endfor %}
                 </ul>
               </div>
-            {%else%}
+            {% else %}
               <a href="{{ link.url }}">{{ link.title }}</a>
-            {%endif%}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
@@ -63,9 +64,7 @@
           <span>
             <i>CART</i>
           </span>
-          <span>
-            CART({{cart.item_count}})
-          </span>
+          <span> CART({{ cart.item_count }}) </span>
         </a>
         <form>
           <div>
