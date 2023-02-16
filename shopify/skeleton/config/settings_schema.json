@@ -6,5 +6,25 @@
     "theme_author": "khirayama",
     "theme_documentation_url": "https://khirayama.com",
     "theme_support_url": "https://khirayama.com"
+  },
+  {
+    "name": "t:settings_schema.logo.name",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.logo.settings.favicon.label",
+        "info": "t:settings_schema.logo.settings.favicon.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.head.name",
+    "settings": [
+      {
+        "type": "html",
+        "id": "headcontent"
+      }
+    ]
   }
 ]
