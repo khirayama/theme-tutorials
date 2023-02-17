@@ -1,21 +1,44 @@
 {% schema %}
 {
   "name": "t:sections.header.name",
-  "limit": 1,
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "t:sections.header.settings.title.label"
     }
-  ]
+  ],
+  "locales": {
+    "ja": {
+      "cart": "カート",
+      "cart_count": {
+        "one": "{{ count }}個のアイテム",
+        "other": "{{ count }}個のアイテム"
+      },
+      "search": "検索"
+    },
+    "en": {
+      "cart": "CART",
+      "cart_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      },
+      "search": "SEARCH"
+    }
+  }
 }
 {% endschema %}
-<header>
+<header class="border-b-2">
+  <h1>
+    <a href="/">Skeleton</a>
+  </h1>
+
   <nav>
-    <a href="/">Shopify-Training</a>
     <a href="/cart">
-      <span> CART({{ cart.item_count }}) </span>
+      <span>{{ 'sections.header.cart' | t }}</span>
+      {% if cart.item_count > 0 %}
+        <span>{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+      {% endif %}
     </a>
     {% if customer %}
       <a href="/account/logout">LOG OUT</a>
@@ -23,58 +46,46 @@
       <a href="/account/login">LOG IN</a>
       <a href="/account/register">REGISTER</a>
     {% endif %}
-    <div>
-      <ul>
-        {% for link in linklists['main-menu'].links %}
-          <li>
-            {% assign child_list_handle = link.title | handleize %}
-            {% if linklists[child_list_handle].links != blank %}
-              <div>
-                <a href="{{ link.url }}">{{ link.title }}</a>
-                <ul>
-                  {% for childlink in linklists[child_list_handle].links %}
-                    {% assign sub_list_handle = childlink.title | handleize %}
-                    {% if linklists[sub_list_handle].links != blank %}
-                      <li>
-                        <a href="{{ childlink.url }}">{{ childlink.title }}</a>
-                        <ul>
-                          {% for sublink in linklists[sub_list_handle].links %}
-                            <li>
-                              <a href="{{ sublink.url }}">{{ sublink.title }}</a>
-                            </li>
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% else %}
-                      <li>
-                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              </div>
-            {% else %}
+
+    <form action="/search" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}">
+      <button type="submit">{{ 'sections.header.search' | t }}</button>
+    </form>
+
+    <ul>
+      {% for link in linklists['main-menu'].links %}
+        <li>
+          {% assign child_list_handle = link.title | handleize %}
+          {% if linklists[child_list_handle].links != blank %}
+            <div>
               <a href="{{ link.url }}">{{ link.title }}</a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-      <div>
-        <a href="/cart">
-          <span>
-            <i>CART</i>
-          </span>
-          <span> CART({{ cart.item_count }}) </span>
-        </a>
-        <form>
-          <div>
-            <input type="text">
-            <span>
-              <button type="submit">SUBMIT</button>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
+              <ul>
+                {% for childlink in linklists[child_list_handle].links %}
+                  {% assign sub_list_handle = childlink.title | handleize %}
+                  {% if linklists[sub_list_handle].links != blank %}
+                    <li>
+                      <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                      <ul>
+                        {% for sublink in linklists[sub_list_handle].links %}
+                          <li>
+                            <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </nav>
 </header>
