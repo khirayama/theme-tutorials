@@ -1,0 +1,120 @@
+{% liquid
+  assign title = page_title
+  if current_tags
+    assign title = title | append: ' - tagged' | append: current_tags | join: ', '
+  endif
+  if current_page != 1
+    assign title = title | append: ' - Page' | append: current_page
+  endif
+  unless page_title contains shop.name
+    assign title = title | append: ' - ' | append: shop.name
+  endunless
+
+  assign og_type = 'article'
+  case template.name
+    when 'index'
+      assign og_type = 'website'
+    when 'product'
+      assign og_type = 'product'
+    when 'blog'
+      assign og_type = 'blog'
+    else
+      assign og_type = 'article'
+  endcase
+%}
+
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="application-name" content="{{ shop.name }}">
+    {%- if settings.favicon != blank -%}
+      <link
+        rel="icon"
+        sizes="192x192"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 192, height: 192 }}"
+      >
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 192, height: 192 }}">
+      <link
+        rel="mask-icon"
+        href="{{ settings.favicon | image_url: width: 192, height: 192 }}"
+        color="{{ settings.themecolor }}"
+      >
+    {%- endif -%}
+    <meta name="theme-color" content="{{ settings.themecolor }}">
+    <title>{{ title }}</title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="shopify">
+    <meta name="rating" content="General">
+    <meta name="format-detection" content="telephone=no">
+    {% if page_description %}
+      <meta name="subject" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% if settings.latitude != blank and settings.longitude != blank %}
+      <meta name="ICBM" content="{{ settings.latitude }}, {{ settings.longitude }}">
+      <meta name="geo.position" content="{{ settings.latitude }};{{ settings.longitude }}">
+    {% endif %}
+    {% if settings.country != blank %}
+      <meta name="geo.region" content="{{ settings.country }}">
+    {% endif %}
+    {% if settings['city-town'] != blank %}
+      <meta name="geo.placename" content="{{ settings.city-town }}">
+    {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://monorail-edge.shopifysvc.com" crossorigin>
+
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="article:author" content="{{ shop.name }}">
+    <meta property="og:type" content="{{ og_type }}">
+    {% if page_description %}
+      <meta property="og:description" content="{{ page_description | escape }}">
+    {% endif %}
+    {% if page_image %}
+      <meta property="og:image" content="{{ page_image | image_url }}">
+    {% endif %}
+    {% if settings.country != blank %}
+      <meta property="og:locale" content="{{ settings.country }}">
+    {% endif %}
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{ canonical_url }}">
+    <meta name="twitter:title" content="{{ title }}">
+    {% if settings.twitter %}
+      <meta name="twitter:site" content="@{{ settings.twitter }}">
+    {% endif %}
+    {% if page_description %}
+      <meta name="twitter:description" content="{{ page_description | escape }}">
+    {% endif %}
+    {% if page_image %}
+      <meta name="twitter:image" content="{{ page_image | image_url }}">
+      <meta name="twitter:image:alt" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {{ 'index.css' | asset_url | stylesheet_tag }}
+
+    {{ settings.headcontent }}
+  </head>
+
+  <body>
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+    <main role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+  </body>
+</html>
