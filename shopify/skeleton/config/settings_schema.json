@@ -8,22 +8,116 @@
     "theme_support_url": "https://khirayama.com"
   },
   {
-    "name": "t:settings_schema.logo.name",
+    "name": {
+      "ja": "ソーシャルアカウント",
+      "en": "Social accounts"
+    },
     "settings": [
       {
-        "type": "image_picker",
-        "id": "favicon",
-        "label": "t:settings_schema.logo.settings.favicon.label",
-        "info": "t:settings_schema.logo.settings.favicon.info"
+        "type": "text",
+        "id": "instgram",
+        "placeholder": "accountname",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "twitter",
+        "placeholder": "accountname",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "facebook",
+        "placeholder": "facebookpage",
+        "label": "Facebook"
       }
     ]
   },
   {
-    "name": "t:settings_schema.head.name",
+    "name": {
+      "ja": "ヘッダ",
+      "en": "Head"
+    },
     "settings": [
       {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": {
+          "ja": "ファビコン画像",
+          "en": "Favicon image"
+        },
+        "info": {
+          "ja": "32 x 32ピクセルに縮小されます。",
+          "en": "Will be scaled down to 32 x 32px"
+        }
+      },
+      {
+        "type": "color",
+        "id": "themecolor",
+        "default": "#000000",
+        "label": {
+          "ja": "テーマカラー",
+          "en": "Theme color"
+        },
+        "info": {
+          "ja": "ブラウザのアドレスバーカラーなどに適用されます。",
+          "en": "Will apply the color to the theme, such as an address bar"
+        }
+      },
+      {
         "type": "html",
-        "id": "headcontent"
+        "id": "headcontent",
+        "label": {
+          "ja": "ヘッダ埋め込み",
+          "en": "Head embed"
+        },
+        "info": {
+          "ja": "gtmなど、テーマ全体に適用するHTMLを埋め込むことができます。",
+          "en": "Embed HTML that applies to the entire theme, such as gtm"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "ja": "位置情報",
+      "en": "Geo info"
+    },
+    "settings": [
+      {
+        "type": "number",
+        "id": "latitude",
+        "label": {
+          "ja": "緯度",
+          "en": "Latitude"
+        }
+      },
+      {
+        "type": "number",
+        "id": "longitude",
+        "label": {
+          "ja": "経度",
+          "en": "Longitude"
+        }
+      },
+      {
+        "type": "text",
+        "id": "country",
+        "label": {
+          "ja": "国コード",
+          "en": "Country code"
+        },
+        "placeholder": "JP, US, etc",
+        "default": "JP"
+      },
+      {
+        "type": "text",
+        "id": "city-town",
+        "placeholder": "Tokyo, San Francisco",
+        "label": {
+          "ja": "都市",
+          "en": "City/Town"
+        }
       }
     ]
   }
