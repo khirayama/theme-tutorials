@@ -1,75 +1,44 @@
 {% schema %}
 {
-  "name": "t:sections.announcement-bar.name",
-  "blocks": [
+  "name": {
+    "ja": "告知バー",
+    "en": "Announcement Bar"
+  },
+  "settings": [
     {
-      "type": "announcement",
-      "name": "t:sections.announcement-bar.blocks.announcement.name",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "default": "Welcome to our store",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
-        },
-        {
-          "type": "select",
-          "id": "text_alignment",
-          "options": [
-            {
-              "value": "text-left",
-              "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__1.label"
-            },
-            {
-              "value": "text-center",
-              "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__2.label"
-            },
-            {
-              "value": "text-right",
-              "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__3.label"
-            }
-          ],
-          "default": "text-center",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.label"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
-        }
-      ]
-    }
-  ],
-  "default": {
-    "blocks": [
-      {
-        "type": "announcement"
+      "type": "html",
+      "id": "announcement",
+      "label": {
+        "ja": "告知バー",
+        "en": "Announcement bar"
       }
-    ]
-  }
+    },
+    {
+      "type": "color",
+      "id": "announcementcolor",
+      "label": {
+        "ja": "告知バー色",
+        "en": "Announcement bar color"
+      }
+    },
+    {
+      "type": "color",
+      "id": "announcementbackground",
+      "label": {
+        "ja": "告知バー背景色",
+        "en": "Announcement bar background color"
+      }
+    }
+  ]
 }
 {% endschema %}
 
-{%- for block in section.blocks -%}
-  {%- case block.type -%}
-    {%- when 'announcement' -%}
-      <div role="region" aria-label="{{ 'sections.header.announcement' | t }}" {{ block.shopify_attributes }}>
-        {%- if block.settings.text != blank -%}
-          {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}">
-          {%- endif -%}
-              <div>
-                <p class="{{ block.settings.text_alignment }}">
-                  <span>{{ block.settings.text | escape }}</span>
-                  {%- if block.settings.link != blank -%}
-                    <span>-</span>
-                  {%- endif -%}
-                </p>
-              </div>
-          {%- if block.settings.link != blank -%}
-            </a>
-          {%- endif -%}
-        {%- endif -%}
-      </div>
-  {%- endcase -%}
-{%- endfor -%}
+{% if section.settings.announcement != blank %}
+  <div
+    role="region"
+    class="text-center p-2 font-bold"
+    style="color: {{ section.settings.announcementcolor }}; background: {{ section.settings.announcementbackground }};"
+  >
+    {{ section.settings.announcement }}
+  </div>
+{%- endif -%}
