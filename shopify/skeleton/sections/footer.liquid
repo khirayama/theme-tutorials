@@ -1,7 +1,7 @@
 {% schema %}
 {
   "name": "Footer",
-  "settings":[
+  "settings": [
     {
       "type": "text",
       "id": "instagram",
@@ -23,29 +23,25 @@
 <footer>
   <ul>
     {% for link in linklists.footer.links %}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
     {% endfor %}
   </ul>
   <ul>
     {% if section.settings.instagram != blank %}
       <li>
-        <a href="{{ section.settings.instagram }}">
-          Instagram
-        </a>
+        <a href="{{ section.settings.instagram }}"> Instagram </a>
       </li>
     {% endif %}
     {% if section.settings.facebook != blank %}
       <li>
-        <a href="{{ section.settings.facebook }}">
-          Facebook
-        </a>
+        <a href="{{ section.settings.facebook }}"> Facebook </a>
       </li>
     {% endif %}
     {% if section.settings.twitter != blank %}
       <li>
-        <a href="{{ section.settings.twitter }}">
-          Twitter
-        </a>
+        <a href="{{ section.settings.twitter }}"> Twitter </a>
       </li>
     {% endif %}
   </ul>
