@@ -1,0 +1,27 @@
+{% schema %}
+{
+  "name": "LogIn"
+}
+{% endschema %}
+
+{% form 'customer_login' %}
+  {{ form.errors | default_errors }}
+  <label for="customer_email">Email Address</label>
+  <input type="email" name="customer[email]">
+
+  <label for="customer_password">Password</label>
+  <input type="password" name="customer[password]">
+
+  <input type="submit" value="Sign In">
+{% endform %}
+
+{% form 'recover_customer_password' %}
+  {{ form.errors | default_errors }}
+  <div>
+    <label for="forget_email">Forget your password</label>
+    <input type="email" id="forget_email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+  </div>
+  <button type="submit">SUBMIT</button>
+{% endform %}
+
+<a href="/account/register">REGISTER</a>
