@@ -4,9 +4,14 @@
   "settings": [
     {
       "type": "collection",
-      "default": "frontpage",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "number",
+      "default": 6,
+      "id": "product_per_page",
+      "label": "Product/Page"
     }
   ]
 }
@@ -14,10 +19,15 @@
 
 <div>section json {{ section.settings | json }}</div>
 {% assign collection = collections[section.settings.collection] %}
-<h2>{{ collection.title }}</h2>
-{% for product in collection.products %}
-  <a href="{{ product.url }}">
-    <p>{{ product.title }}</p>
-    <p>{{ product.price | money }}</p>
-  </a>
-{% endfor %}
+{% paginate collection.products by section.settings.product_per_page %}
+  <h2>{{ collection.title }}</h2>
+  {% for product in collection.products %}
+    <a href="{{ product.url }}">
+      <p>{{ product.title }}</p>
+      <p>{{ product.price | money }}</p>
+    </a>
+  {% endfor %}
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination: next: '>', previous: '<' }}
+  {% endif %}
+{% endpaginate %}
