@@ -34,8 +34,8 @@ shopify theme check .
     -   sections の設定を定義して呼び出す
     -   下記が基本的な templates ファイル https://shopify.dev/themes/architecture/templates#subtypes
         -   404.json
-        -   article.json: `/`
-        -   blog.json: `/`
+        -   article.json: `/blogs/news/:article`
+        -   blog.json: `/blogs/news`
         -   cart.json: `/cart`
         -   collection.json: `/collection/:collection`
         -   customers
@@ -82,8 +82,14 @@ Liquid の概要 [Shopify のテンプレート言語 Liquid の概要 - Shopify
 
 -   フォームの種類 [Liquid tags: theme tags](https://shopify.dev/docs/api/liquid/tags/theme-tags#form)
 
+## 方針
+
+-   label などの記述に関して
+    -   英語は最初の単語のみ Capitalize
+    -   英語は末尾のピリオドを省略する
+    -   日本語は末尾を読点で終える
 
 ## 参考資料
 
-- [Shopify Theme Section を初めて作成するときのポイント【2023 年版】 - Shopify 日本](https://www.shopify.com/jp/blog/partner-how-to-create-your-first-shopify-theme-section)
-- [Liquidを使用したShopifyのフォーム作成について - Shopify 日本](https://www.shopify.com/jp/blog/partner-liquid-form)
+-   [Shopify Theme Section を初めて作成するときのポイント【2023 年版】 - Shopify 日本](https://www.shopify.com/jp/blog/partner-how-to-create-your-first-shopify-theme-section)
+-   [Liquid を使用した Shopify のフォーム作成について - Shopify 日本](https://www.shopify.com/jp/blog/partner-liquid-form)
