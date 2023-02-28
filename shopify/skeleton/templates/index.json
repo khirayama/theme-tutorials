@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "key_visual": {
+      "type": "key-visual"
+    },
+    "featured_collection": {
+      "type": "collection",
+      "settings": {
+        "collection": "frontpage",
+        "product_per_page": 3
+      }
+    },
+    "blocks": {
+      "type": "blocks"
+    }
+  },
+  "order": ["key_visual", "featured_collection", "blocks"]
+}
