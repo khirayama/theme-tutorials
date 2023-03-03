@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "sample_section": {
+      "type": "sample-section"
+    },
+    "product": {
+      "type": "product"
+    }
+  },
+  "order": ["sample_section", "product"]
+}
