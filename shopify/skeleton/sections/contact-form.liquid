@@ -1,0 +1,48 @@
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Contact form",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}
+
+{%- if section.settings.heading != blank -%}
+  <h2>
+    {{ section.settings.heading | escape }}
+  </h2>
+{%- else -%}
+  <h2>{{ 'templates.contact.form.title' | t }}</h2>
+{%- endif -%}
+{% form 'contact' %}
+  {% if form.posted_successfully? %}
+    <p>お問い合わせありがとうございます。</p>
+  {% endif %}
+  <div>
+    <label for="name">名前</label>
+    <input type="text" id="name" placeholder="" name="contact[name]">
+  </div>
+  <div>
+    <label for="email">メール</label>
+    <input type="email" id="email" placeholder="" name="contact[email]">
+  </div>
+  <div>
+    <label for="tel">電話番号</label>
+    <input type="tel" id="tel" placeholder="" name="contact[phone]">
+  </div>
+  <div>
+    <label for="content">お問い合わせ内容</label>
+    <textarea id="content" rows="4" name="contact[body]"></textarea>
+  </div>
+  <button type="submit">送信する</button>
+{% endform %}
