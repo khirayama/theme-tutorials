@@ -1,0 +1,22 @@
+{% schema %}
+{
+  "name": "Account"
+}
+{% endschema %}
+
+{% if customer.default_address %}
+  <p>{{ customer.default_address.address1 }}</p>
+  {% if customer.default_address.address2 != "" %}
+    <p>{{ customer.default_address.address2 }}</p>
+  {% endif %}
+  <p>{{ customer.default_address.city }}, {% if address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
+  <p>{{ customer.default_address.zip }}</p>
+  <p>{{ customer.default_address.phone }}</p>
+{% endif %}
+
+{{ customer.name }}
+{{ customer.email }}
+
+{% for order in customer.orders %}
+  {{ order | json }}
+{% endfor %}
