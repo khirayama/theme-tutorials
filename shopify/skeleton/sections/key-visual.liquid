@@ -1,0 +1,50 @@
+{% schema %}
+{
+  "name": {
+    "ja": "キービジュアル",
+    "en": "Key visual"
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": {
+        "ja": "画像",
+        "en": "Image"
+      }
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding_step",
+      "default": 0,
+      "max": 8,
+      "min": 0,
+      "label": {
+        "ja": "上下の間隔",
+        "en": "Vertical padding"
+      }
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_step",
+      "default": 0,
+      "max": 8,
+      "min": 0,
+      "label": {
+        "ja": "左右の間隔",
+        "en": "Horizontal padding"
+      }
+    }
+  ]
+}
+{% endschema %}
+
+<img
+  src="{{ section.settings.image | image_url }}"
+  alt="{{ section.settings.image.alt }}"
+  width="{{ section.settings.image.width }}"
+  height="{{ section.settings.image.height }}"
+  loading="lazy"
+  class="w-full py-{{ section.settings.vertical_padding_step }} px-{{ section.settings.horizontal_padding_step }}"
+  class="py py-1 py-2 py-3 py-4 py-5 py-6 py-7 py-8 px px-1 px-2 px-3 px-4 px-5 px-6 px-7 px-8"
+>
