@@ -1,0 +1,55 @@
+{% schema %}
+{
+  "name": {
+    "ja": "ブロック",
+    "en": "Blocks"
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "order",
+      "label": {
+        "ja": "カラム並び順",
+        "en": "Order of columns"
+      },
+      "options": [
+        {
+          "label": {
+            "ja": "先頭要素中央配置"
+          },
+          "value": "center"
+        },
+        {
+          "label": {
+            "ja": "先頭要素左配置"
+          },
+          "value": "left"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": {
+        "ja": "テキスト",
+        "en": "Text"
+      },
+      "type": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": {
+            "ja": "テキスト",
+            "en": "Text"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% for block in section.blocks %}
+  <span>{{ block | json }}</span>
+{% endfor %}
