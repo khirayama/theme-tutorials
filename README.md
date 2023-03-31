@@ -1,0 +1,2 @@
+-   [2023 年最新版: HTML の head の書き方、head 内に記述する要素の総まとめ | コリス](https://coliss.com/articles/build-websites/operation/work/html-head-elements.html)
+-   [ウェブ管理者 - シェア機能](https://developers.facebook.com/docs/sharing/webmasters)
